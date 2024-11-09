@@ -1,1 +1,38 @@
-<p>home works!</p>
+<main style="padding: 1em;">
+
+  <h1>Meus sites favoritos</h1>
+
+  <p>Esta é a minha galeria de sites favoritos.</p>
+
+  <mat-grid-list
+    [cols]="(umaColuna$ | async) ? 1 : (duasColuna$ | async) ? 2 : 3"
+    rowHeight="10em"
+    gutterSize="1em"
+  >
+    <mat-grid-tile
+      [style.backgroundColor]="'#00000010'"
+      [style.borderRadius]="'.5em'"
+    >
+      Tile 1
+    </mat-grid-tile>
+    <mat-grid-tile
+      [style.backgroundColor]="'#00000010'"
+      [style.borderRadius]="'.5em'"
+    >
+      Tile 2
+    </mat-grid-tile>
+    <mat-grid-tile
+      [style.backgroundColor]="'#00000010'"
+      [style.borderRadius]="'.5em'"
+    >
+      Tile 3
+    </mat-grid-tile>
+    <mat-grid-tile
+      [style.backgroundColor]="'#00000010'"
+      [style.borderRadius]="'.5em'"
+    >
+      Tile 4
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</main>
