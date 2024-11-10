@@ -9,30 +9,16 @@
     rowHeight="10em"
     gutterSize="1em"
   >
+
+  @for (favorito of (favoritos$ | async); track favorito) {
     <mat-grid-tile
       [style.backgroundColor]="'#00000010'"
       [style.borderRadius]="'.5em'"
     >
-      Tile 1
+      {{ favorito.titulo }}
     </mat-grid-tile>
-    <mat-grid-tile
-      [style.backgroundColor]="'#00000010'"
-      [style.borderRadius]="'.5em'"
-    >
-      Tile 2
-    </mat-grid-tile>
-    <mat-grid-tile
-      [style.backgroundColor]="'#00000010'"
-      [style.borderRadius]="'.5em'"
-    >
-      Tile 3
-    </mat-grid-tile>
-    <mat-grid-tile
-      [style.backgroundColor]="'#00000010'"
-      [style.borderRadius]="'.5em'"
-    >
-      Tile 4
-    </mat-grid-tile>
+  }
+
   </mat-grid-list>
 
 </main>

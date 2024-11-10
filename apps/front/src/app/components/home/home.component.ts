@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs';
-import { IFavorito } from '@nx-monorepo/comum';
+import { FavoritoService } from '../../services/favorito.service';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +16,9 @@ import { IFavorito } from '@nx-monorepo/comum';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
+
+  private favoritoService = inject(FavoritoService)
+  public favoritos$ = this.favoritoService.getAll();
 
   public breakpointObserver = inject(BreakpointObserver);
 
