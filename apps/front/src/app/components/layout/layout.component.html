@@ -2,7 +2,9 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isXSmall$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isXSmall$ | async) ? 'push' : 'side'"
-      [opened]="(isXSmall$ | async) === false">
+      [opened]="(isXSmall$ | async) === false"
+      [autoFocus]="false"
+  >
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/home" routerLinkActive="active">Home</a>
