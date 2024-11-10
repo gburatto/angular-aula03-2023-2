@@ -1,0 +1,13 @@
+div.container {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+
+.card-favorito {
+  max-width: 30em;
+}
+
+img {
+  margin: .5em 0;
+}
