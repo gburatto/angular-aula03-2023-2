@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs';
+import { IFavorito } from '@nx-monorepo/comum';
 
 @Component({
   selector: 'app-home',
