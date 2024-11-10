@@ -23,6 +23,7 @@
     "@angular/router": "~17.2.0",
     "@nx/angular": "18.1.2",
     "axios": "^1.6.0",
+    "cors": "^2.8.5",
     "express": "^4.18.1",
     "mongodb": "^6.10.0",
     "rxjs": "~7.8.0",
