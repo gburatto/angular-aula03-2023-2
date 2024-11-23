@@ -58,6 +58,12 @@ export class FormFavoritoComponent implements OnInit {
       this.favoritoEdicaoService.put(iFavorito).subscribe(() => {
         this.router.navigate([ '/' ]);
       });
+
+    // Se for um favorito novo:
+    } else {
+      this.favoritoEdicaoService.post(iFavorito).subscribe(() => {
+        this.router.navigate([ '/' ]);
+      });
     }
   }
 

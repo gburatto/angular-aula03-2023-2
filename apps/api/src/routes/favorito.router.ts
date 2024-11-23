@@ -2,7 +2,7 @@ import { NextFunction, Request, Response, Router } from "express";
 
 import { getCollection } from "../util/get-collection";
 import { IFavorito } from "@nx-monorepo/comum";
-import { WithId } from "mongodb";
+import { InsertOneResult, WithId } from "mongodb";
 
 export const favoritoRouter = Router();
 
@@ -33,5 +33,33 @@ favoritoRouter.put('/:id', async (req: Request, res: Response, next: NextFunctio
     res.json(body);
   } else {
     return next(new Error(`Favorito com ID ${_id} não encontrado!`));
+  }
+});
+
+favoritoRouter.post('/', async (req: Request, res: Response, next: NextFunction) => {
+
+  const body: IFavorito = req.body;
+
+  // Descobrir o último ID usado no BD:
+  const buscaMaxId = await getCollection<IFavorito>(
+    req.app,
+    'favoritos',
+  ).find().sort({_id: -1}).limit(1).toArray();
+  const novoId = (!buscaMaxId || buscaMaxId.length < 1) ? 1 : buscaMaxId[0]._id + 1;
+
+  // Insere o favorito usando o novo ID descoberto:
+  const favorito: IFavorito = {
+    ...body,
+    _id: novoId,
+  }
+  const results: InsertOneResult<IFavorito> = await getCollection<IFavorito>(
+    req.app,
+    'favoritos',
+  ).insertOne(favorito);
+
+  if (results.acknowledged) {
+    res.json(favorito);
+  } else {
+    return next(new Error(`Não foi possível inserir o novo favorito!`));
   }
 });

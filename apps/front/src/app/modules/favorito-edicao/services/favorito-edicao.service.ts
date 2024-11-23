@@ -32,4 +32,17 @@ export class FavoritoEdicaoService {
     return req$;
   }
 
+  public post(iFavorito: IFavorito): Observable<IFavorito> {
+    const req$ = this.httpClient.post<IFavorito>(
+      `${this.apiBase}/favorito/`,
+      iFavorito,
+    ).pipe(
+      share(),
+    );
+
+    req$.subscribe();
+
+    return req$;
+  }
+
 }
