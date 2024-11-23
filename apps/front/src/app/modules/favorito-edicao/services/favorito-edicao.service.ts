@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IFavorito } from '@nx-monorepo/comum';
-import { Observable } from 'rxjs';
+import { Observable, share } from 'rxjs';
 import { API_BASE } from '../../../app.config';
 
 @Injectable({
@@ -16,6 +16,20 @@ export class FavoritoEdicaoService {
     return this.httpClient.get<IFavorito>(
       `${this.apiBase}/favorito/${id}`,
     );
+  }
+
+  public put(iFavorito: IFavorito): Observable<IFavorito> {
+    const req$ =  this.httpClient.put<IFavorito>(
+      `${this.apiBase}/favorito/${iFavorito._id}`,
+      iFavorito,
+    ).pipe(
+      share(),
+    );
+
+    // Dispara a requisição:
+    req$.subscribe();
+
+    return req$;
   }
 
 }

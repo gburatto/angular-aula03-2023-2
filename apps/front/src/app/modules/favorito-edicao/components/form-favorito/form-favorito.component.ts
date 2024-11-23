@@ -1,4 +1,5 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -7,6 +8,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { FavoritoEdicaoService } from '../../services/favorito-edicao.service';
+
+import { IFavorito } from '@nx-monorepo/comum';
 
 
 @Component({
@@ -34,6 +37,7 @@ export class FormFavoritoComponent implements OnInit {
     this.formGroup.controls['_id'].setValue(+(value || '0'));
   }
 
+  private router = inject(Router);
   private fb = inject(FormBuilder);
 
   private favoritoEdicaoService = inject(FavoritoEdicaoService);
@@ -47,7 +51,14 @@ export class FormFavoritoComponent implements OnInit {
   });
 
   onSubmit(): void {
-    alert('Thanks!');
+    const iFavorito = <IFavorito>this.formGroup.value;
+
+    // Se estiver editando:
+    if (this.id) {
+      this.favoritoEdicaoService.put(iFavorito).subscribe(() => {
+        this.router.navigate([ '/' ]);
+      });
+    }
   }
 
   public ngOnInit(): void {
