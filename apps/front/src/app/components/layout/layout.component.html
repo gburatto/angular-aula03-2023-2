@@ -23,6 +23,17 @@
         </button>
       }
       <span>Meus favoritos</span>
+      <span class="spacer"></span>
+      <button
+        type="button"
+        aria-label="Editar o favorito"
+        mat-fab extended
+        routerLink="/favorito-edicao"
+        routerLinkActive="oculto"
+      >
+        <mat-icon>bookmark_add</mat-icon>
+        Novo
+      </button>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

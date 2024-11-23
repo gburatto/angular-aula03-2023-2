@@ -24,3 +24,11 @@ a[mat-list-item].active::before {
 mat-toolbar.mat-toolbar.mat-primary {
   z-index: 2;
 }
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.oculto {
+  display: none;
+}

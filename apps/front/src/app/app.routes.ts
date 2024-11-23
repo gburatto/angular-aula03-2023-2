@@ -21,6 +21,12 @@ export const appRoutes: Route[] = [
     component: SobreComponent,
   },
   {
+    path: 'favorito-edicao',
+    loadChildren: () => import(
+      './modules/favorito-edicao/favorito-edicao.module',
+    ).then(m => m.FavoritoEdicaoModule),
+  },
+  {
     path: '',
     pathMatch: 'prefix',
     redirectTo: '/sobre',
