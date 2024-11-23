@@ -10,6 +10,7 @@ import cors from 'cors';
 
 import { MongoClient } from 'mongodb';
 import { favoritoRouter } from './routes/favorito.router';
+import { json } from 'body-parser';
 
 MongoClient.connect(
   'mongodb://angular-aula03-2023-2_devcontainer-db-1/'
@@ -24,6 +25,9 @@ const app = express();
 
 // Adiciona como primeira camada de forma que também será o último:
 app.use(cors()); // O middleware adiciona header HTTP CORS de resposta.
+
+// Processar corpo da requisição HTTP antes das rotas que necessitam dele:
+app.use(json());
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
