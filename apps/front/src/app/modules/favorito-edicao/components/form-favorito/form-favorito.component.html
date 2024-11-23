@@ -3,6 +3,7 @@
     <mat-card-header>
       <mat-card-title>
         {{ id ? 'Editar' : 'Novo' }} favorito
+        {{ formGroup.controls['_id'].value}}
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
