@@ -32,7 +32,10 @@
           <mat-icon>open_in_new</mat-icon>
           Visitar
         </a>
-        <button mat-stroked-button>
+        <button
+          mat-stroked-button
+          routerLink="/favorito-edicao/{{favorito._id}}"
+        >
           <mat-icon>edit_note</mat-icon>
           Editar
         </button>

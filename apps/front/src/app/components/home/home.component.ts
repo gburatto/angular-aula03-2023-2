@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FavoritoService } from '../../services/favorito.service';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     MatIconModule,
     CommonModule,
+    RouterModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
