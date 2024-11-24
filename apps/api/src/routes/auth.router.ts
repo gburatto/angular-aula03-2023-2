@@ -1,6 +1,9 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { IUsuario, IUsuarioESenha, IUsuarioLogado } from "@nx-monorepo/comum";
+
 import { getCollection } from "../util/get-collection";
+
+const SENHA_SECRETA = 's3nh4S3crEt4';
 
 export const authRouter = Router();
 
