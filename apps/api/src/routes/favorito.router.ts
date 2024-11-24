@@ -3,8 +3,12 @@ import { NextFunction, Request, Response, Router } from "express";
 import { getCollection } from "../util/get-collection";
 import { IFavorito } from "@nx-monorepo/comum";
 import { InsertOneResult, WithId } from "mongodb";
+import { AuthorizedRequest, verificarTokenJwt } from "../util/jwt";
 
 export const favoritoRouter = Router();
+
+// Vale para o router inteiro:
+// favoritoRouter.use(verificarTokenJwt);
 
 // Se a requisição for HTTP GET /api/favorito:
 favoritoRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
@@ -13,7 +17,7 @@ favoritoRouter.get('/', async (req: Request, res: Response, next: NextFunction) 
   res.json(favoritos);
 });
 
-favoritoRouter.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
+favoritoRouter.get('/:id', verificarTokenJwt, async (req: AuthorizedRequest, res: Response, next: NextFunction) => {
   const _id: number = +req.params.id;
   const favorito: IFavorito = await getCollection<IFavorito>(
     req.app,
@@ -22,7 +26,7 @@ favoritoRouter.get('/:id', async (req: Request, res: Response, next: NextFunctio
   res.json(favorito);
 });
 
-favoritoRouter.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
+favoritoRouter.put('/:id', verificarTokenJwt, async (req: AuthorizedRequest, res: Response, next: NextFunction) => {
   const _id: number = +req.params.id;
   const body: IFavorito = req.body;
   const results: WithId<IFavorito> = await getCollection<IFavorito>(
@@ -36,7 +40,7 @@ favoritoRouter.put('/:id', async (req: Request, res: Response, next: NextFunctio
   }
 });
 
-favoritoRouter.post('/', async (req: Request, res: Response, next: NextFunction) => {
+favoritoRouter.post('/', verificarTokenJwt, async (req: AuthorizedRequest, res: Response, next: NextFunction) => {
 
   const body: IFavorito = req.body;
 

@@ -1,3 +1,5 @@
+import { JwtPayload } from 'jsonwebtoken';
+
 export interface IUsuario {
 
   _id: number;
@@ -23,6 +25,7 @@ export interface IUsuario {
 
 export type IUsuarioESenha = Pick<IUsuario, 'login' | 'senha'>
 export type IUsuarioSemSenha = Omit<IUsuario, 'senha'>
+export type IUsuarioJwt = IUsuarioSemSenha & JwtPayload;
 
 export interface IUsuarioLogado {
 
