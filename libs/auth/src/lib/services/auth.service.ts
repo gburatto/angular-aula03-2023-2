@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 import { IUsuarioESenha, IUsuarioLogado } from '@nx-monorepo/comum';
 
@@ -19,7 +19,11 @@ export class AuthService {
     return this.httpClient.post<IUsuarioLogado>(
       `${this.apiBase}/auth/login`,
       usuario,
-    )
+    ).pipe(
+      tap(usuarioLogado => {
+        window.localStorage.setItem('jwt', usuarioLogado.jwt);
+      }),
+    );
   }
 
 }

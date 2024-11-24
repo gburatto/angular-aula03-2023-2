@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { IUsuarioESenha } from '@nx-monorepo/comum';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-auth',
@@ -27,6 +28,8 @@ export class AuthComponent {
 
   private fb = inject(FormBuilder);
 
+  private router = inject(Router);
+
   private authService = inject(AuthService);
 
   public hide = true;
@@ -38,8 +41,14 @@ export class AuthComponent {
 
   public login(): void {
     const iUsuarioESenha = this.formGroup.value as IUsuarioESenha;
-    this.authService.login(iUsuarioESenha).subscribe(usuarioLogado => {
-      console.log(usuarioLogado);
+    this.authService.login(iUsuarioESenha).subscribe({
+      next: usuarioLogado => {
+        this.router.navigate([ '/' ]);
+        console.log(usuarioLogado);
+      },
+      error: error => {
+        console.error('Erro ao fazer login:', error);
+      },
     });
   }
 
