@@ -15,6 +15,10 @@ export class AuthService {
   private httpClient = inject(HttpClient);
   private apiBase = inject(API_BASE);
 
+  public get jwt(): string | null {
+    return window.localStorage.getItem('jwt');
+  }
+
   public login(usuario: IUsuarioESenha): Observable<IUsuarioLogado> {
     return this.httpClient.post<IUsuarioLogado>(
       `${this.apiBase}/auth/login`,
