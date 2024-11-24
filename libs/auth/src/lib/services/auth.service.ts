@@ -6,12 +6,14 @@ import { map, Observable, ReplaySubject, tap } from 'rxjs';
 import { IUsuarioESenha, IUsuarioLogado } from '@nx-monorepo/comum';
 
 import { API_BASE } from '../auth/auth.module';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  private router = inject(Router);
   private httpClient = inject(HttpClient);
   private apiBase = inject(API_BASE);
 
@@ -40,6 +42,12 @@ export class AuthService {
         this._jwt$.next(usuarioLogado.jwt);
       }),
     );
+  }
+
+  public logout(): void {
+    window.localStorage.removeItem('jwt');
+    this._jwt$.next(undefined);
+    this.router.navigate([ '/auth' ]);
   }
 
 }
