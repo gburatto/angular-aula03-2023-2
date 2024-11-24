@@ -1,12 +1,10 @@
-import { ApplicationConfig, importProvidersFrom, InjectionToken } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { appRoutes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthModule } from '@nx-monorepo/auth';
-
-export const API_BASE = new InjectionToken<string>('URL base do back-end');
+import { API_BASE, AuthModule } from '@nx-monorepo/auth';
 
 export const appConfig: ApplicationConfig = {
   providers: [
