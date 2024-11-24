@@ -1,1 +1,42 @@
-<p>auth works!</p>
+<main style="padding: 1em; text-align: center;">
+
+  <h1>
+    Fazer login
+  </h1>
+
+  <div style="display: inline-block; width: 100%; max-width: 20em;">
+    <form
+    style="display: flex; flex-direction: column;"
+    >
+      <mat-form-field>
+        <mat-label>Usuário</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Senha</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'">
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hide = !hide"
+          [attr.aria-label]="'Ocultar a senha'"
+          [attr.aria-pressed]="hide"
+        >
+        <mat-icon>
+          {{ hide ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+        </button>
+      </mat-form-field>
+  <button
+  mat-fab
+  extended
+  type="submit"
+  >
+  <mat-icon>login</mat-icon>
+  Login
+</button>
+</form>
+</div>
+
+</main>
