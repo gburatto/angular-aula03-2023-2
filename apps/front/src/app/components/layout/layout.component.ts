@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '@nx-monorepo/auth';
 
 @Component({
   selector: 'app-layout',
@@ -27,6 +28,8 @@ import { RouterModule } from '@angular/router';
 })
 export class LayoutComponent {
   private breakpointObserver = inject(BreakpointObserver);
+
+  public authService = inject(AuthService);
 
   isXSmall$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.XSmall)
     .pipe(
