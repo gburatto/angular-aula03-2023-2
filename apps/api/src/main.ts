@@ -11,6 +11,7 @@ import cors from 'cors';
 import { MongoClient } from 'mongodb';
 import { favoritoRouter } from './routes/favorito.router';
 import { json } from 'body-parser';
+import { authRouter } from './routes/auth.router';
 
 MongoClient.connect(
   'mongodb://angular-aula03-2023-2_devcontainer-db-1/'
@@ -34,6 +35,8 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.get('/api', (req, res) => {
   res.send({ message: 'Welcome to api!' });
 });
+
+app.use('/api/auth', authRouter);
 
 app.use('/api/favorito', favoritoRouter);
 
