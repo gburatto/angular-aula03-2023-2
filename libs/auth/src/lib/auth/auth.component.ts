@@ -6,6 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { IUsuarioESenha } from '@nx-monorepo/comum';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'lib-auth',
@@ -25,11 +27,20 @@ export class AuthComponent {
 
   private fb = inject(FormBuilder);
 
+  private authService = inject(AuthService);
+
   public hide = true;
 
   public formGroup = this.fb.group({
     login: ['', Validators.required],
     senha: ['', Validators.required],
   });
+
+  public login(): void {
+    const iUsuarioESenha = this.formGroup.value as IUsuarioESenha;
+    this.authService.login(iUsuarioESenha).subscribe(usuarioLogado => {
+      console.log(usuarioLogado);
+    });
+  }
 
 }

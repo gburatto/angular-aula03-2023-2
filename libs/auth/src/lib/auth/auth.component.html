@@ -8,6 +8,7 @@
     <form
       style="display: flex; flex-direction: column;"
       [formGroup]="formGroup"
+      (submit)="login()"
     >
       <mat-form-field>
         <mat-label>Usuário</mat-label>
